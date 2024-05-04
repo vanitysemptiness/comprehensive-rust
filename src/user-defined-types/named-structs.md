@@ -13,6 +13,7 @@ struct Person {
 }
 
 fn describe(person: &Person) {
+  // person already dereferenced here
     println!("{} is {} years old", person.name, person.age);
 }
 

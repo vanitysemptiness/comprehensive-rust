@@ -11,7 +11,7 @@ Tuple structs, newtype wrappers, unit-like structs, including initialization syn
 If the field names are unimportant, you can use a tuple struct:
 
 ```rust,editable
-struct Point(i32, i32);
+struct Point(i32, i32); // tuples are basically structs in rust
 
 fn main() {
     let p = Point(17, 23);

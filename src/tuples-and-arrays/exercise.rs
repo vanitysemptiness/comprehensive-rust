@@ -17,10 +17,10 @@
 fn transpose(mut matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
     for i in 0..3 {
         for j in i+1..3 {
-            // XOR operator no additional mem
-            matrix[i][j] ^= matrix[j][i];
-            matrix[j][i] ^= matrix[i][j];
-            matrix[i][j] ^= matrix[j][i];
+            // tripple XOR operator no additional mem
+            matrix[i][j] ^= matrix[j][i]; // both a and b
+            matrix[j][i] ^= matrix[i][j]; // not b or a = a
+            matrix[i][j] ^= matrix[j][i]; // not a or b = b
         }
     }
     matrix
