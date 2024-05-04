@@ -15,19 +15,12 @@
 // ANCHOR: solution
 // ANCHOR: transpose
 fn transpose(mut matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
-    use std::collections::HashSet;
-    // ANCHOR_END: transpose
-    let mut swapped: HashSet<(usize, usize)> = HashSet::new();
     for i in 0..3 {
-        for j in 0..3 {
-            if swapped.contains(&(i, j)) {
-                continue;
-            }
-            let temp = matrix[j][i];
-            matrix[j][i] = matrix[i][j];
-            matrix[i][j] = temp;
-            swapped.insert((i, j));
-            swapped.insert((j, i));
+        for j in i+1..3 {
+            // XOR operator no additional mem
+            matrix[i][j] ^= matrix[j][i];
+            matrix[j][i] ^= matrix[i][j];
+            matrix[i][j] ^= matrix[j][i];
         }
     }
     matrix
