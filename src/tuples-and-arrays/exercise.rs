@@ -14,15 +14,23 @@
 
 // ANCHOR: solution
 // ANCHOR: transpose
-fn transpose(matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
+fn transpose(mut matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
+    use std::collections::HashSet;
     // ANCHOR_END: transpose
-    let mut result = [[0; 3]; 3];
+    let mut swapped: HashSet<(usize, usize)> = HashSet::new();
     for i in 0..3 {
         for j in 0..3 {
-            result[j][i] = matrix[i][j];
+            if swapped.contains(&(i, j)) {
+                continue;
+            }
+            let temp = matrix[j][i];
+            matrix[j][i] = matrix[i][j];
+            matrix[i][j] = temp;
+            swapped.insert((i, j));
+            swapped.insert((j, i));
         }
     }
-    result
+    matrix
 }
 
 // ANCHOR: tests
